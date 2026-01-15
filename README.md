@@ -14,4 +14,5 @@ Hipotesis 3: cluster_based.csv
 Keputusan pembelian course dipengaruhi oleh segmentasi perilaku pengguna, sehingga penambahan fitur berbasis clustering pengguna dapat meningkatkan kemampuan model dalam membedakan pola pembelian.
 
 Hipotesis 4 : prediction_logistic.csv
+
 Keputusan pengguna untuk membeli course dapat diprediksi menggunakan seluruh fitur pengguna, namun tanpa normalisasi data, karena Logistic Regression masih mampu menangkap pola dasar dari data mentah.

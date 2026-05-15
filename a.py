@@ -1,4 +1,4 @@
-import pandas as pd 
+import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
@@ -17,11 +17,10 @@ test_features = test.drop(columns=['id'])
 
 combined = pd.concat([train_features, test_features], axis=0)
 
-encoder = LabelEncoder()
-
 for col in combined.columns:
     if combined[col].dtype == 'object':
-        combined[col] = encoder.fit_transform(combined[col].astype(str))
+        combined[col] = combined[col].astype(str)
+        combined[col] = LabelEncoder().fit_transform(combined[col])
 
 combined = combined.replace([np.inf, -np.inf], np.nan)
 combined = combined.fillna(0)

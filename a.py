@@ -18,14 +18,11 @@ test_features = test.drop(columns=['id'])
 combined = pd.concat([train_features, test_features], axis=0)
 
 for col in combined.columns:
-    if combined[col].dtype == 'object':
-        combined[col] = combined[col].astype(str)
-        combined[col] = LabelEncoder().fit_transform(combined[col])
+    combined[col] = combined[col].astype(str)
+    combined[col] = LabelEncoder().fit_transform(combined[col])
 
 combined = combined.replace([np.inf, -np.inf], np.nan)
 combined = combined.fillna(0)
-
-combined = combined.astype(float)
 
 X = combined.iloc[:len(train_features)]
 X_test = combined.iloc[len(train_features):]
@@ -36,9 +33,9 @@ X_train, X_val, y_train, y_val = train_test_split(
 
 scaler = StandardScaler()
 
-X_train = scaler.fit_transform(X_train.values)
-X_val = scaler.transform(X_val.values)
-X_test = scaler.transform(X_test.values)
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
+X_test = scaler.transform(X_test)
 
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)

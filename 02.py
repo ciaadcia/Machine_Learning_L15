@@ -28,27 +28,16 @@ X = combined.iloc[:len(X_train_data)]
 X_test = combined.iloc[len(X_train_data):]
 
 # Split untuk evaluasi
-X_train, X_val, y_train, y_val = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Model Random Forest
-model = RandomForestClassifier(
-    n_estimators=100,
-    random_state=42
-)
+model = RandomForestClassifier(n_estimators=100,random_state=42)
 model.fit(X_train, y_train)
 
 # Evaluasi
 pred_val = model.predict(X_val)
 print("Hipotesis 2 - Random Forest Accuracy:", accuracy_score(y_val, pred_val))
-
 test_predictions = model.predict(X_test)
-
-submission = pd.DataFrame({
-    test.columns[0]: test[test.columns[0]],  # kolom ID
-    target_column: test_predictions          # nama target HARUS SAMA
-})
-
-submission.to_csv("submission_random_forest.csv", index=False)
+submission = pd.DataFrame({test.columns[0]: test[test.columns[0]], target_column: test_predictions})
+submission.to_csv("file_name.csv", index=False)
 
